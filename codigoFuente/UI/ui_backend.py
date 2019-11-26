@@ -33,9 +33,10 @@ class UI_Backend(QtWidgets.QMainWindow, Ui_MainWindow, Points_Input, Error_Graph
         
         
         self.init_information_table()
+        self.cargarAlimentos()
         self.datos = list(map(list,map(mapStringInt, np.array(self.informacion_recomendada)[1:,1:])))
         self.inp_edad.valueChanged.connect(self.edadChanged)
-        self.btn_train.clicked.connect(self.train_som)
+        self.btn_train.clicked.connect(self.ejecutar_algoritmo)
         self.cbx_sexo.currentTextChanged.connect(self.sexoChanged)
         self.rb_emb.toggled.connect(lambda:self.edadChanged(self.inp_edad.value()))
         self.rb_lac.toggled.connect(lambda:self.edadChanged(self.inp_edad.value()))
@@ -173,6 +174,32 @@ class UI_Backend(QtWidgets.QMainWindow, Ui_MainWindow, Points_Input, Error_Graph
             self.rb_emb.setEnabled(False)
         self.edadChanged(self.inp_edad.value())
 
+    def cargarAlimentos(self):
+        self.alimentos = []
+
+        info = open('datos/alimentos_recomendados.csv','r')
+        for dato in info.readlines():
+            dato = dato.split(',')
+            self.alimentos.append(dato)
+        info.close()
+
+        self.actualizarTablaAlimentos()
+
+    def actualizarTablaAlimentos(self):
+        # datos = list(map(list,np.array(self.informacion_recomendada)[1:,1:]))
+
+        self.tbl_alimentos.horizontalHeader().setVisible(True)
+        self.tbl_alimentos.verticalHeader().setVisible(True)
+        self.tbl_alimentos.verticalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        self.tbl_alimentos.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+
+        for columna in range(len(self.alimentos[0])):
+            for fila in range(len(np.array(self.alimentos).T[0])):
+                item = self.alimentos[fila][columna].strip()
+                self.tbl_alimentos.setItem(fila, columna, QtWidgets.QTableWidgetItem(item))
+
+
+
     def init_information_table(self):
         self.tbl_informacion.horizontalHeader().setVisible(True)
         self.tbl_informacion.verticalHeader().setVisible(True)
@@ -192,10 +219,12 @@ class UI_Backend(QtWidgets.QMainWindow, Ui_MainWindow, Points_Input, Error_Graph
             for fila in range(len(np.array(self.informacion_recomendada).T[0])-1):
                 self.tbl_informacion.setItem(fila, columna, QtWidgets.QTableWidgetItem(datos[fila][columna]))
 
+        info.close()
 
 
 
-    def train_som(self):
+
+    def ejecutar_algoritmo(self):
         self.kilocalorias_max = float(self.inp_kcal.value())
         self.vitamina_max = float(self.inp_vit_a.value())
         self.fibra_max = float(self.inp_fibra.value())
@@ -210,7 +239,7 @@ class UI_Backend(QtWidgets.QMainWindow, Ui_MainWindow, Points_Input, Error_Graph
         self.dimensiones = int(self.inp_dimensiones.value())
         self.p_mut = float(self.inp_p_mutacion.value())
 
-        self.dieta = Dieta(self.kilocalorias_max, self.vitamina_max, self.fibra_max, self.calcio_max, self.hierro_max)
+        self.dieta = Dieta(self.kilocalorias_max, self.vitamina_max, self.fibra_max, self.calcio_max, self.hierro_max, self.alimentos)
         self.agb = AGB(self.individuos, self.dimensiones, 1, self.generaciones, self.p_mut, self.dieta)
         self.agb.countChanged.connect(self.onCountChanged)
         self.agb.finished.connect(self.onFinished)

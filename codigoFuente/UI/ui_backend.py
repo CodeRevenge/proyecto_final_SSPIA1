@@ -249,16 +249,16 @@ class UI_Backend(QtWidgets.QMainWindow, Ui_MainWindow, Error_Graph):
         self.alelos = len(self.alimentos)
         self.p_mut = float(self.inp_p_mutacion.value())
 
-        self.dieta = Dieta(self.kilocalorias_max, self.vitamina_max, self.fibra_max, self.calcio_max, self.hierro_max, self.alimentos)
-        self.agb = AGB(self.individuos, self.alelos, 1, self.generaciones, self.p_mut, self.dieta)
-        self.agb.countChanged.connect(self.onCountChanged)
-        self.agb.finished.connect(self.onFinished)
-        self.agb.start()
-
         # self.dieta = Dieta(self.kilocalorias_max, self.vitamina_max, self.fibra_max, self.calcio_max, self.hierro_max, self.alimentos)
         # self.agb = AGB(self.individuos, self.alelos, 1, self.generaciones, self.p_mut, self.dieta)
-        # self.agb.optimizar()
-        # self.onFinished()
+        # self.agb.countChanged.connect(self.onCountChanged)
+        # self.agb.finished.connect(self.onFinished)
+        # self.agb.start()
+
+        self.dieta = Dieta(self.kilocalorias_max, self.vitamina_max, self.fibra_max, self.calcio_max, self.hierro_max, self.alimentos)
+        self.agb = AGB(self.individuos, self.alelos, 1, self.generaciones, self.p_mut, self.dieta)
+        self.agb.optimizar()
+        self.onFinished()
 
         
 

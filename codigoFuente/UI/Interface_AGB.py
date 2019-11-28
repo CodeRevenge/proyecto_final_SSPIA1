@@ -847,6 +847,8 @@ class Ui_MainWindow(object):
         self.inp_p_mutacion.setAlignment(QtCore.Qt.AlignCenter)
         self.inp_p_mutacion.setButtonSymbols(QtWidgets.QAbstractSpinBox.NoButtons)
         self.inp_p_mutacion.setKeyboardTracking(True)
+        self.inp_p_mutacion.setDecimals(4)
+        self.inp_p_mutacion.setProperty("value", 0.01)
         self.inp_p_mutacion.setObjectName("inp_p_mutacion")
         self.gridLayout_7.addWidget(self.inp_p_mutacion, 4, 2, 1, 2)
         self.inp_generaciones = QtWidgets.QSpinBox(self.groupBox)

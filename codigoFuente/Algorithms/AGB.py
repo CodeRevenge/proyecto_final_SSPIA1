@@ -27,6 +27,9 @@ class AGB(QThread):
         self._generacion = 0
 
     def run(self):
+        self.optimizar()
+
+    def optimizar(self):
         self.crearIndividuos()
         self._mejor_historico = self._individuos[0]
         self._generacion = 0
@@ -53,7 +56,7 @@ class AGB(QThread):
             self._generacion += 1
             progreso_cont += progreso
             if int(progreso_cont) % 5:
-                self.countChanged.emmit(progreso_cont)
+                self.countChanged.emit(progreso_cont)
 
     def crearIndividuos(self):
         for _ in range(self._cantidad_individuos):

@@ -71,7 +71,7 @@ class Error_Graph(QWidget):
     def set_title(self, min_error = '', max_ephocs = ''):
         plt.figure(1)
         self.ax = plt.gca()
-        self.ax.set_title('Error mínimo alcanzado: {:.6f}'.format(min_error), fontdict = self.TITLE_STYLE)
+        self.ax.set_title('Fitness alcanzado: {:.6f}'.format(min_error), fontdict = self.TITLE_STYLE)
 
     def add_error(self, error):
         plt.figure(1)

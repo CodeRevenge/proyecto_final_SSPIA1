@@ -1,4 +1,4 @@
-CARN� DE IDENTIDAD,Producto,Raci�n media Kcal,Vitamina A g,Fibra g,Calcio g,Hierro g
+CARN� DE IDENTIDAD,Producto,Raci�n media Kcal,Vitamina A UI,Fibra mg,Calcio mg,Hierro mg
 1,Brocoli,34,623,2.6,47,0.73
 2,Cebolla,40,2,9.3,23,0.21
 3,Esparrago,20,756,3.9,24,2.14
@@ -14,13 +14,3 @@ CARN� DE IDENTIDAD,Producto,Raci�n media Kcal,Vitamina A g,Fibra g,Calcio g,
 13,Tocino,407,0,0.8,4,0.42
 14,Carne de cerdo,898,37,0,1,0.13
 15,Pavo,208,0,0,26,1.79
-16,Ala de Pollo,211,58,3.3,28,2.41
-17,Alubias,155,0,21.6,61,1.99
-18,Frijoles,71,150,13.3,28,1.61
-19,Garbanzo,378,67,63,57,4.31
-20,Lentejas,352,39,10.7,35,6.51
-21,Soja,173,9,9.9,102,5.14
-22,Carne Molida,295,0,0,11,2.42
-23,Costilla de res,240,5,0,11,2.37
-24,Carne de lomo,211,22,0,13,3.24
-25,Chuleta de res,234,6,0,7,2.47

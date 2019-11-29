@@ -835,7 +835,7 @@ class Ui_MainWindow(object):
         self.inp_individuos.setKeyboardTracking(True)
         self.inp_individuos.setMinimum(1)
         self.inp_individuos.setMaximum(200)
-        self.inp_individuos.setProperty("value", 8)
+        self.inp_individuos.setProperty("value", 32)
         self.inp_individuos.setObjectName("inp_individuos")
         self.gridLayout_7.addWidget(self.inp_individuos, 1, 2, 1, 2)
         self.inp_p_mutacion = QtWidgets.QDoubleSpinBox(self.groupBox)
